@@ -1,0 +1,82 @@
+* {
+  font-family: Inter;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn,
+input.form-control {
+  border-radius: 0.5rem;
+}
+
+.error {
+  color: red;
+}
+
+.info {
+  color: #0083da;
+}
+
+
+/* CSS loader */
+.loader {
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* profile styles */
+
+.sidebar-item{
+  list-style-type: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: .5rem;
+  padding-left: 1rem;
+  transition: all .4s;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  cursor: pointer;
+  display: flex;
+  color: rgb(80, 80, 80);
+  border-radius: .5rem;
+}
+
+.selected{
+  color: #000;
+  background-color: #efefef;
+}
+
+.sidebar-item:nth-child(1){
+  margin-top: 5rem;
+}
+
+.sidebar-item:hover{
+  background-color: #efefef;
+}
+
+/* home styles */
+/* .movie-card{
+  margin-left
+} */
+
+.movie-poster{
+  height: 200px;
+  border-radius: .3rem;
+}
