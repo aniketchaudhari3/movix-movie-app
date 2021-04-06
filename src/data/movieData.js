@@ -25,3 +25,20 @@ export const movies = [
     imdbRating: '8.0'
   }
 ]
+
+export const genres = [
+  "Action",
+  "Animation",
+  "Comedy",
+  "Crime",
+  "Drama",
+  "Experimental",
+  "Fantasy",
+  "Historical",
+  "Horror",
+  "Romance",
+  "Science Fiction",
+  "Thriller",
+  "Western",
+  "Others"
+]

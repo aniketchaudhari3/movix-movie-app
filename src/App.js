@@ -3,7 +3,8 @@ import "./style.css";
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 import {
@@ -13,6 +14,8 @@ import {
   Profile,
   About,
   ForgotPassword,
+  Search,
+  MovieDetails,
   PrivateRoute,
   PublicRoute
 } from './components'
@@ -29,6 +32,10 @@ export default function App() {
           <PublicRoute path="/forgot-password" component={ForgotPassword} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/about" component={About} />
+          <Route path="/search/:query" component={Search} />
+          <Route path="/movie/:movieId" component={MovieDetails} />
+          <Redirect from="/movie/" to="/" />
+          <Redirect from="/search/" to="/" />
           <Route exact path="/" component={Home} />
         </Switch>
       </Router>

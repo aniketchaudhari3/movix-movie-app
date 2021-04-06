@@ -4,8 +4,7 @@ import Navbar from './Navbar'
 import Loader from './Loader'
 import { useAuth } from "../context/authContext";
 import { validateEmail } from '../utils/helpers'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toast } from './Toast'
 
 export default function Login() {
   const emailInput = useRef();
@@ -28,7 +27,10 @@ export default function Login() {
       try {
         const res = await login(email, password);
         if (res?.user) {
-          toast.info('Logged in!')
+          Toast.fire({
+            title: 'Logged in!',
+            icon: 'success'
+          })
           setLoading(false)
           setTimeout(() => history.push('/profile'), 3000)
         }
@@ -44,7 +46,6 @@ export default function Login() {
   return (
     <>
       <Navbar />
-      <ToastContainer />
       <div className="container">
         <div className="row mt-5 justify-content-center">
           <div className="mt-5 col-md-4">

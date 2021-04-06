@@ -1,19 +1,16 @@
 import React, { useState, useRef } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import Loader from './Loader'
 import { useAuth } from "../context/authContext";
 import { validateEmail } from '../utils/helpers'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toast } from './Toast'
 
 export default function ForgotPassword() {
   const emailInput = useRef();
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const history = useHistory()
 
   const { resetPassword } = useAuth();
 
@@ -26,7 +23,9 @@ export default function ForgotPassword() {
       setLoading(true)
       try {
         await resetPassword(email);
-        toast.info(`Password reset link sent`)
+        Toast.fire({
+          title: 'Password reset link sent, please check email'
+        })
         setInfo(`Password reset link sent to ${email}`)
         setLoading(false)
         emailInput.current.value = ''
@@ -42,7 +41,6 @@ export default function ForgotPassword() {
   return (
     <>
       <Navbar />
-      <ToastContainer />
       <div className="container">
         <div className="row mt-5 justify-content-center">
           <div className="mt-5 col-md-4">

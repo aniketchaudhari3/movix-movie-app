@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
-
+import { FaSignOutAlt } from 'react-icons/fa'
+import { BiUserCircle } from 'react-icons/bi'
 export default function Navbar() {
   const { currentUser, logout } = useAuth()
   const history = useHistory()
@@ -42,9 +43,9 @@ export default function Navbar() {
                   {currentUser.displayName ?? currentUser.email}
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                  <li><Link className="dropdown-item" to="/profile"><BiUserCircle /> Profile</Link></li>
                   <li><hr className="dropdown-divider" /></li>
-                  <li><a onClick={handleLogout} className="dropdown-item">Logout</a></li>
+                  <li><a onClick={handleLogout} className="dropdown-item"><FaSignOutAlt /> Logout</a></li>
                 </ul>
               </li>
             ) :

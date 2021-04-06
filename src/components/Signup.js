@@ -3,8 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from "../context/authContext";
 import Navbar from './Navbar'
 import Loader from './Loader'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {Toast} from './Toast'
 import { validateEmail } from '../utils/helpers'
 
 export default function Signup() {
@@ -33,7 +32,10 @@ export default function Signup() {
           const res = await signup(email, password);
           console.log(res)
           if (res?.user) {
-            toast.info('Account created successfully!')
+            Toast.fire({
+              title: 'Account created successfully!',
+              icon: 'success'
+            })
             setTimeout(() => history.push('/profile'), 3000)
             setLoading(false)
           }
@@ -53,7 +55,6 @@ export default function Signup() {
   return (
     <>
       <Navbar />
-      <ToastContainer />
       <div className="container">
         <div className="row mt-5 justify-content-center">
           <div className="mt-5 col-md-4">

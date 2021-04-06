@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react'
 import { useAuth } from '../context/authContext'
 import Loader from './Loader'
 import { validateEmail } from '../utils/helpers'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { Toast } from './Toast'
+import { CgCheckO } from 'react-icons/cg'
 
 export default function Account() {
   const { currentUser, updateName, updateEmail, updatePassword } = useAuth()
@@ -16,14 +16,8 @@ export default function Account() {
     passwordError: ''
   })
 
-  // const nameInput = useRef()
-  // const emailInput = useRef()
   const passwordInput = useRef()
   const confPasswordInput = useRef()
-
-  const handleChange = (event) => {
-    console.log(event)
-  }
 
   async function handleSubmit() {
     setLoading(true)
@@ -40,7 +34,10 @@ export default function Account() {
       try {
         const res = await updateName(name)
         if (res) {
-          toast.info('Name updated successfully!')
+          Toast.fire({
+            title: 'Name updated successfully!',
+            icon: 'success'
+          })
         }
       } catch (err) {
         setErrors({ ...errors, nameError: err.message })
@@ -55,7 +52,10 @@ export default function Account() {
         try {
           const res = await updateEmail(email)
           if (res) {
-            toast.info('Email updated successfully!')
+            Toast.fire({
+              title: 'Email updated successfully!',
+              icon: 'success'
+            })
           }
         } catch (err) {
           setErrors({ ...errors, nameError: err.message })
@@ -75,7 +75,10 @@ export default function Account() {
       try {
         const res = await updatePassword(password)
         if (res) {
-          toast.info('Password updated successfully!')
+          Toast.fire({
+            title: 'Password updated successfully!',
+            icon: 'success'
+          })
           passwordInput.current.value = ''
           confPasswordInput.current.value = ''
         }
@@ -122,7 +125,6 @@ export default function Account() {
         </div>
         <div className="col-md-7">
           <div className="container mt-3">
-            <ToastContainer />
             <h5>Basic Details</h5>
             <div className="my-4">
               <label className="form-text" htmlFor="name">Name</label>
@@ -137,14 +139,14 @@ export default function Account() {
             <h5>Update your password</h5>
             <div className="my-4">
               <label className="form-text" htmlFor="password">Password</label>
-              <input ref={passwordInput} autoComplete="new-password" onChange={handleChange} type="password" id="password" className="mt-2 form-control" placeholder="Enter new password (min. 8 characters)" />
+              <input ref={passwordInput} autoComplete="new-password" type="password" id="password" className="mt-2 form-control" placeholder="Enter new password (min. 8 characters)" />
             </div>
             <div className="my-4">
               <label className="form-text" htmlFor="confPassword">Confirm Password</label>
-              <input ref={confPasswordInput} autoComplete="new-password" onChange={handleChange} type="password" id="confPassword" className="mt-2 form-control" placeholder="Confirm Password" />
+              <input ref={confPasswordInput} autoComplete="new-password" type="password" id="confPassword" className="mt-2 form-control" placeholder="Confirm Password" />
             </div>
             <div className="error form-text mb-3 text-center">{errors?.passwordError}</div>
-            <button onClick={handleSubmit} className="w-25 btn btn-primary" type="button">{loading ? <Loader /> : 'Update'}</button>
+            <button onClick={handleSubmit} className="btn btn-primary" type="button">{loading ? <Loader /> : <span><CgCheckO /> Update</span>}</button>
           </div>
         </div>
       </div>

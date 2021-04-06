@@ -17,9 +17,9 @@ export default function Profile() {
       <Navbar />
       <div className="container-fluid profile-container">
         <div className="d-flex justify-content-center">
-          <div className="col-md-8">
-            <div className="row">
-              <div className="col-md-3 sidebar">
+          <div className="col-md-8 remove-bs-gutter">
+            <div className="row remove-bs-gutter">
+              <div className="col-md-3 sidebar remove-bs-gutter">
                 <ul className="profile-sidebar">
                   <SidebarItem
                     icon={<FaUserAlt className="mt-1 mx-2" />}
@@ -31,7 +31,7 @@ export default function Profile() {
                     component={<Wishlist />} />
                 </ul>
               </div>
-              <div className="col-md-9 main-content p-3">
+              <div className="col-md-9 main-content p-3 remove-bs-gutter">
                 {selected.component}
               </div>
             </div>
